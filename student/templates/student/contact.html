@@ -1,0 +1,123 @@
+{% extends 'student/base.html' %}
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title> {% block title %} Contact {% endblock %}</title>
+    {% block head %}
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,700" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'student/style.css' %}">
+    {% endblock %}
+</head>
+{% block pagecontent %}
+<body>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+    </div>
+    <div class="row justify-content-center ">
+        <div class="col-lg-10">
+            <div class="wrapper">
+                <div class="row no-gutters">
+                    <div class="col-md-6 d-flex align-items-stretch">
+                        <div class="contact-wrap w-100 p-md-5 p-4 py-5 ">
+                            <h3 class="mb-4">Contact us</h3>
+                            {% if messages %}
+                            {% for message in messages%}
+                            <div class="alert alert-{{message.tags}} alert-dismissible fade show mb-4" role="alert">
+                                {{message}}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                            </div>
+                            {% endfor %}
+                            {%endif%}
+
+                            <form method="POST" id="contactForm" name="contactForm" class="contactForm" novalidate>
+                                {% csrf_token %}
+                                {{ form.non_field_errors }}
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p>{{form.first_name}} </p>
+                                        <label class="errorlist"
+                                               style="color: #f65c78; font-size: 12px; margin-top: 0.5px;">{{field.errors|striptags}}</label>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <p> {{form.last_name}} </p>
+                                        <label class="errorlist"
+                                               style="color: #f65c78; font-size: 12px; margin-top: 0.5px;">{{field.errors|striptags}}</label>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <p>{{form.email}}</p>
+                                        <label class="errorlist"
+                                               style="color: #f65c78; font-size: 12px; margin-top: 0.5px;">{{field.errors|striptags}}</label>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <p>{{form.mobile}} </p>
+                                        <label class="errorlist"
+                                               style="color: #f65c78; font-size: 12px; margin-top: 0.5px;">{{field.errors|striptags}}</label>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <p>{{form.message}}</p>
+                                        <label class="errorlist"
+                                               style="color: #f65c78; font-size: 12px; margin-top: 0.5px;">{{field.errors|striptags}}</label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input type="submit" value="Send" class="btn btn-primary btn-sm">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 d-flex align-items-stretch">
+                        <div class="info-wrap w-100 p-md-5 p-4 py-5 img">
+                            <h3>Contact information</h3>
+                            <div class="dbox w-100 d-flex align-items-start">
+                                <div class="icon d-flex align-items-center justify-content-center"><span
+                                        class="fa fa-map-marker"></span></div>
+                                <div class="text pl-3">
+                                    <p><span>Address: </span><a
+                                            href="https://www.google.com/maps/place/CodeSnake+Infolab+Pvt.+Ltd./@23.0390736,72.5066308,17z/data=!3m1!4b1!4m6!3m5!1s0x395e9bd69c54b15f:0xd52487e82b5a1efd!8m2!3d23.0390736!4d72.5092057!16s%2Fg%2F11kk025cn2?entry=ttu"
+                                            target="blank"> B-608-09, Shilp Aaron, Shidhu Bhavan Road, SG Highway,
+                                        Ahmedabad-380054.</a></p>
+                                </div>
+                            </div>
+                            <div class="dbox w-100 d-flex align-items-center">
+                                <div class="icon d-flex align-items-center justify-content-center"><span
+                                        class="fa fa-phone"></span></div>
+                                <div class="text pl-3">
+                                    <p><span>Phone: </span><a href="tel://9909042330">+91 9909042330</a></p>
+                                </div>
+                            </div>
+                            <div class="dbox w-100 d-flex align-items-center">
+                                <div class="icon d-flex align-items-center justify-content-center"><span
+                                        class="fa fa-paper-plane"></span></div>
+                                <div class="text pl-3">
+                                    <p><span>Email: </span><a
+                                            href="mailto:contact@codesnake.in">contact@codesnake.in</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="dbox w-100 d-flex align-items-center">
+                                <div class="icon d-flex align-items-center justify-content-center"><span
+                                        class="fa fa-globe"></span></div>
+                                <div class="text pl-3">
+                                    <p><span>Website: </span><a href="https://www.codesnake.in/" target="blank">codesnake.in/</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+{% endblock %}
+</html>

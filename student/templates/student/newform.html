@@ -1,0 +1,166 @@
+{% extends 'student/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} StudentForm {% endblock %}</title>
+    {% block head %}
+    <style>
+        .form-outline label {
+            text-align: justify;
+        }
+
+        .card-registration .select-input.form-control[readonly]:not([disabled]) {
+        font-size: 1rem;
+        line-height: 2.15;
+        padding-left: .75em;
+        padding-right: .75em;
+        }
+        .card-registration .select-arrow {
+        top: 13px;
+        }
+    </style>
+    {% endblock %}
+</head>
+{% block pagecontent %}
+<body>
+<section class="w-100 gradient-custom">
+    <div class="container py-5 h-100">
+        <div class="row justify-content-center align-items-center h-100">
+            <div class="col-12 col-lg-9 col-xl-7">
+                {% if messages %}
+                {% for message in messages%}
+                <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+                    <strong>Message:</strong> {{message}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+                {%endif%}
+                <div class="card shadow-2-strong card-registration" style="border-radius: 15px; background: #36454F;">
+                    <div class="card-body p-4 p-md-5">
+                        <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 text-white">Registration Form</h3>
+                        <form method="POST" enctype="multipart/form-data" novalidate>{% csrf_token %}
+                            {{ form.non_field_errors }}
+                            <div class="row">
+                                <div class="col-md-6 mb-4 ">
+                                    <div class="form-outline">
+                                        <label class="text-white">{{form.first_name.label}} *</label>
+                                        {{form.first_name}}
+                                        <span class="errorlist" style="color: #f65c78; font-size: 12px; margin-top: 0.5px;">{{ form.errors.first_name|striptags}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 mb-4 ">
+                                    <div class="form-outline">
+                                        <label class="text-white">{{form.last_name.label}} *</label>
+                                        {{form.last_name}}
+                                        <span class="errorlist" style="color: #f65c78; font-size: 12px; margin-top: 0.5px;">{{ form.errors.last_name|striptags}}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-4 ">
+
+                                    <div class="form-outline">
+
+                                        <label class="text-white">{{form.dob.label}} *</label>
+                                        {{form.dob}}
+                                        <span class="errorlist"
+                                              style="color: #f65c78; font-size: 12px; margin-top: 0.5px;">{{ form.errors.dob|striptags}}</span>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-outline">
+                                        <label class="text-white">{{form.gender.label}} *</label>
+                                        <div class="text-white">
+                                            {% for i in form.gender %}
+                                                {{i}}
+                                            {% endfor %}
+                                        </div>
+                                        <span class="errorlist"
+                                              style="color: #f65c78; font-size: 12px; margin-top: 0.5px;">{{ form.errors.gender|striptags}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-4 ">
+
+                                        <div class="form-outline">
+                                            <label class="text-white">{{form.mobile_no.label}} *</label>
+                                            {{form.mobile_no}}
+                                            <span class="errorlist"
+                                                  style="color: #f65c78; font-size: 12px; margin-top: 0.5px;">{{ form.errors.mobile_no|striptags}}</span>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6 mb-4 ">
+
+                                        <div class="form-outline">
+                                            <label class="text-white">{{form.email.label}} *</label>
+                                            {{form.email}}
+                                            <span class="errorlist"
+                                                  style="color: #f65c78; font-size: 12px; margin-top: 0.5px;">{{ form.errors.email|striptags}}</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-4 ">
+                                        <div class="form-outline">
+                                            <label class="text-white">{{form.courses.label}} *</label>
+                                            {{form.courses}}
+                                            <span class="errorlist"
+                                                  style="color: #f65c78; font-size: 12px; margin-top: 0.5px;">{{ form.errors.courses|striptags}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+
+                                        <div class="form-outline">
+                                            <label class="text-white">{{form.city.label}} *</label>
+                                            {{form.city}}
+                                            <span class="errorlist"
+                                                  style="color: #f65c78; font-size: 12px; margin-top: 0.5px;">{{ form.errors.city|striptags}}</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-4 ">
+
+                                        <div class="form-outline">
+                                            <label class="text-white">{{form.address.label}}</label>
+                                            {{form.address}}
+                                            <span class="errorlist"
+                                                  style="color: #f65c78; font-size: 12px; margin-top: 0.5px;">{{ form.errors.address|striptags}}</span>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6 mb-4 ">
+
+                                        <div class="form-outline">
+                                            <label class="text-white">{{form.photo.label}}</label>
+                                            {{form.photo}}
+                                            <span class="errorlist"
+                                                  style="color: #f65c78; font-size: 12px; margin-top: 0.5px;">{{ form.errors.photo|striptags}}</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 pt-2">
+                                    <input class="btn btn-primary " type="submit" value="Submit"/>
+                                    <a href="{% url 'StudentList'%}" class="btn btn-secondary">Student Detail</a>
+                                </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+{% endblock %}
+</html>

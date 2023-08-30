@@ -1,0 +1,57 @@
+{% extends 'student/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} Courses {% endblock %}</title>
+</head>
+{% block pagecontent %}
+<body>
+<h2>Our Courses</h2>
+
+<!--<div class="jumbotron p-9 p-md-5 text-white rounded bg-dark">-->
+<!--    <img align="right" src="{% static 'Images/main-3.png' %}" alt="...">-->
+<!--    <div class="col-md-6 px-0 ">-->
+<!--        <h2 class="display-4 font-italic">Where Passion Meets Programming</h2>-->
+<!--        <p class="lead my-3">There are no prerequisites if you know basic English, and have a bit of understanding of-->
+<!--            software programs, this course is for you. codesnake Infolab provides Python Training in Ahmedabad, which-->
+<!--            isn’t restricted to a specific group of audience. Any individual should have a desire to learn and opt for-->
+<!--            this course. </p>-->
+<!--    </div>-->
+<!--</div>-->
+
+<div class="card-deck">
+    <div class="card">
+        <img class="card-img-top" src="{% static 'Images/Python kick start.png' %}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Python Kick-start</h5>
+            <a href="#" class="btn btn-primary">Show Detail</a>
+        </div>
+    </div>
+    <div class="card">
+        <img class="card-img-top" src="{% static 'Images/Python Champ.png' %}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Python Champ</h5>
+            <a href="#" class="btn btn-primary">Show Detail</a>
+        </div>
+    </div>
+    <div class="card">
+        <img class="card-img-top" src="{% static 'Images/Python Advance.png' %}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Python Advance</h5>
+            <a href="#" class="btn btn-primary">Show Detail</a>
+        </div>
+    </div>
+    <div class="card">
+        <img class="card-img-top" src="{% static 'Images/Python Professiona.png' %}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Python Professional</h5>
+            <a href="#" class="btn btn-primary">Show Detail</a>
+        </div>
+    </div>
+</div>
+</body>
+{% endblock %}
+</html>
+

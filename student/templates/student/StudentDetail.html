@@ -1,0 +1,70 @@
+{% extends 'student/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> {% block title %} Student List {% endblock %} </title>
+</head>
+
+{% block pagecontent %}
+<body>
+
+{% if messages %}
+{% for message in messages%}
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+    <strong>Message:</strong> {{message}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{%endif%}
+
+{% if data %}
+<!--{% for i in data%}-->
+<!--<h5>{{i.id}} | {{i.first_name}} | {{i.last_name}} | {{i.mobile_no}} | {{i.email}} | {{i.courses}} |-->
+<!--    <a href="{% url 'StudentUpdateView' i.pk %}" class="btn btn-primary btn-sm">Update data</a>-->
+<!--    <a href="{% url 'StudentDelete' i.pk %}" class="btn btn-secondary btn-sm">Delete</a>-->
+<!--</h5>-->
+<!--<hr>-->
+<!--{% endfor %}-->
+
+
+<table class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Mobile</th>
+        <th scope="col">Email</th>
+        <th scope="col">Courses</th>
+        <th scope="col">Update</th>
+        <th scope="col">Delete</th>
+    </tr>
+    </thead>
+    {% for i in data %}
+    <tbody>
+    <tr>
+        <th scope="col">{{forloop.counter}}</th>
+        <th scope="col">{{i.first_name}}</th>
+        <th scope="col">{{i.last_name}}</th>
+        <th scope="col">{{i.mobile_no}}</th>
+        <th scope="col">{{i.email}}</th>
+        <th scope="col">{{i.courses}}</th>
+        <th scope="col"><a href="{% url 'StudentUpdateView' i.pk %}"><i class="far fa-edit" style="color:blue;"></i></a>
+        </th>
+        <th scope="col"><a href="{% url 'StudentDelete' i.pk %}"><i class="fa fa-trash" aria-hidden="true"
+                                                                    style="color:red"></i></a></th>
+    </tr>
+    </tbody>
+    {% endfor %}
+</table>
+
+{% else %}
+<h2>No Record Found..! </h2>
+{% endif %}
+
+<!--<a href="{% url 'StudentFormView' %}" class="btn btn-primary btn-sm">Insert New data</a>-->
+
+</body>
+{% endblock %}
+</html>

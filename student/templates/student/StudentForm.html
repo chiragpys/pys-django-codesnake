@@ -1,0 +1,60 @@
+{% extends 'student/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} Student Form {% endblock %}</title>
+    {% block head %}
+    <style>
+        .errorlist {
+            list-style-type: none;
+            color: red;
+        }
+
+        label.required::after {
+            content: ' *';
+            color: red;
+        }
+
+        label.required {
+            color: blue;
+        }
+        label {
+            color: blue;
+        }
+    </style>
+    {% endblock %}
+</head>
+
+{% block pagecontent %}
+<body style="background-color:">
+<h2 class="text font-weight-bold ">Student Registration Form</h2>
+{% if messages %}
+{% for message in messages%}
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+    <strong>Message:</strong> {{message}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{%endif%}
+
+<form method="POST" enctype="multipart/form-data" novalidate>{% csrf_token %}
+    {{ form.non_field_errors }}
+    <div class="row mt-auto ">
+        {% for field in form %}
+        <div class="col-sm-3 mb-auto">
+            <span class="errorlist">{{field.errors|striptags}}</span>
+            <p>{{ field.label_tag }} {{field}} </p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <input type="submit" value="Submit" class="btn btn-primary btn-sm">
+
+    <a href="{% url 'StudentList'%}" class="btn btn-secondary btn-sm">Student Detail</a>
+
+</form>
+
+</body>
+{% endblock %}
+</html>
